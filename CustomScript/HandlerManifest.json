@@ -1,6 +1,7 @@
 [{
-  "name": "CustomScript",
-  "version": "1.5.1.0",
+  "namespace": "Microsoft.OSTCExtensions",
+  "name": "CustomScriptForLinux",
+  "version": "2.0.0",
   "handlerManifest": {
     "installCommand": "customscript.py -install",
     "uninstallCommand": "customscript.py -uninstall",
