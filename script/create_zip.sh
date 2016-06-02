@@ -99,4 +99,4 @@ zip -r "$build_dir/$ext_full_name.zip" .
 
 echo "Delete tmp dir..."
 rm -rf "$tmp_dir"
-echo "Done Done!"
+echo "Done Done Done"
