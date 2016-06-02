@@ -37,7 +37,7 @@ ext_name=$2
 ext_version=$3
 cd $ext_dir
 ext_dir=`pwd`
-cd $curr_dir
+cd "$curr_dir"
 
 
 script=$(dirname $0)
@@ -66,8 +66,8 @@ if [ ! $ext_version ] ; then
     exit 1
 fi
 
-if [ ! -d $build_dir ] ; then
-    mkdir $build_dir
+if [ ! -d "$build_dir" ] ; then
+    mkdir "$build_dir"
 fi
 
 ext_full_name=$ext_name-$ext_version
@@ -76,27 +76,27 @@ tmp_dir=$build_dir/$ext_full_name
 echo "Create zip for $ext_name version $ext_version"
 
 echo "Creat tmp dir: $tmp_dir"
-mkdir $tmp_dir
+mkdir -p "$tmp_dir"
 
 echo "Copy files..."
-cp -r $ext_dir/* $tmp_dir
-rm $tmp_dir/references
+cp -r "$ext_dir/." "$tmp_dir"
+rm -f "$tmp_dir/references"
 
 echo "Copy dependecies..."
-cat $ext_dir/references
-cat $ext_dir/references | xargs cp -r -t $tmp_dir
+cat "$ext_dir/references"
+cat "$ext_dir/references" | xargs -I{} cp -r -t "$tmp_dir" "{}"
 
 echo "Switch to tmp dir..."
-cd $tmp_dir
+cd "$tmp_dir"
 
 echo "Remove test dir..."
-rm -r test
-rm -r */test
-rm *.pyc
+rm -rf test
+rm -rf */test
+rm -rf *.pyc
 
 echo "Create zip..."
-zip -r $build_dir/$ext_full_name.zip .
+zip -r "$build_dir/$ext_full_name.zip" .
 
 echo "Delete tmp dir..."
-rm $tmp_dir -r
+rm -rf "$tmp_dir"
 echo "Done!"
