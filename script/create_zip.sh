@@ -75,7 +75,7 @@ tmp_dir=$build_dir/$ext_full_name
 
 echo "Create zip for $ext_name version $ext_version"
 
-echo "Creat tmp dir: $tmp_dir"
+echo "Create tmp dir: $tmp_dir"
 mkdir -p "$tmp_dir"
 
 echo "Copy files..."
